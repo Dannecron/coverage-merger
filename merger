@@ -27,7 +27,7 @@ if (isset($GLOBALS['_composer_autoload_path'])) {
     unset($knownAutoloadPaths, $path);
 }
 
-$app = new \Ahc\Cli\Application('clover-merger', '1.0.0');
+$app = new \Ahc\Cli\Application('clover-merger', '0.1.0');
 
 $app->onException(static function (\Throwable $exception, int $exitCode) use ($app): void {
     $io = $app->io();
