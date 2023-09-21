@@ -1,0 +1,51 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Dannecron\CoverageMerger\Command\Exceptions\CommandException;
+use Dannecron\CoverageMerger\Command\CloverMergeCommand;
+use Dannecron\CoverageMerger\Clover;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+$app = new \Ahc\Cli\Application('clover-merger', '1.0.0');
+
+$app->onException(static function (\Throwable $exception, int $exitCode) use ($app): void {
+    $io = $app->io();
+
+    $io->error($exception->getMessage(), true);
+
+    if (($exception instanceof CommandException) === false) {
+        exit($exitCode);
+    }
+
+    if ($exception->isVerbose() === false) {
+        exit($exception->getCode());
+    }
+
+    $trace = $exception->getTrace();
+    $io->table(\array_map(static function (array $traceStep): array {
+        $methodOrFunc = \array_key_exists('class', $traceStep)
+            ? "{$traceStep['class']}::{$traceStep['function']}"
+            : $traceStep['function'];
+
+        return [
+            'method/func' => $methodOrFunc,
+            'file' => "{$traceStep['file']}:{$traceStep['line']}",
+
+        ];
+    }, $trace));
+
+    exit($exception->getCode());
+});
+
+$app->add(
+    new CloverMergeCommand(
+        new Clover\Handler(new Clover\Parser()),
+        new Clover\Renderer(),
+        $app,
+    ),
+);
+
+$app->handle($_SERVER['argv']);

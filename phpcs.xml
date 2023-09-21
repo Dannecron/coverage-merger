@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="psr-12">
+    <rule ref="PSR12" />
+
+    <exclude-pattern>./vendor/*</exclude-pattern>
+    <exclude-pattern>./tests/data/*</exclude-pattern>
+    <exclude-pattern>./*\.(xml|js)$</exclude-pattern>
+</ruleset>
