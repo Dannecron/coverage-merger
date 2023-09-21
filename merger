@@ -7,7 +7,25 @@ use Dannecron\CoverageMerger\Command\Exceptions\CommandException;
 use Dannecron\CoverageMerger\Command\CloverMergeCommand;
 use Dannecron\CoverageMerger\Clover;
 
-require_once __DIR__ . '/vendor/autoload.php';
+if (isset($GLOBALS['_composer_autoload_path'])) {
+    require_once $GLOBALS['_composer_autoload_path'];
+} else {
+    $knownAutoloadPaths = [
+        __DIR__ . '/../../autoload.php',
+        __DIR__ . '/../vendor/autoload.php',
+        __DIR__ . '/vendor/autoload.php',
+    ];
+
+    foreach ($knownAutoloadPaths as $path) {
+        if (\file_exists($path)) {
+            require_once $path;
+
+            break;
+        }
+    }
+
+    unset($knownAutoloadPaths, $path);
+}
 
 $app = new \Ahc\Cli\Application('clover-merger', '1.0.0');
 
