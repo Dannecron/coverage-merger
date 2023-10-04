@@ -8,14 +8,27 @@ Supported formats:
 
 ### Install
 
-// todo
+#### As global composer dependency
+
+```shell
+composer global require dannecron/coverage-merger
+```
+
+#### As local composer dev-dependency
+
+```shell
+composer require --dev dannecron/coverage-merger
+```
 
 ### Usage
 
 It's cli-app with single access point:
 
 ```shell
-./merger
+# if installed globally
+$COMPOSER_HOME/vendor/bin/merger
+# if installed locally
+./vendor/bin/merger
 ```
 
 ```text
