@@ -1,0 +1,34 @@
+---
+name: ci
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'src/*'
+      - 'tests/*'
+      - 'composer.json'
+      - 'phpunit.xml'
+      - 'phpcs.xml'
+
+jobs:
+  tests:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        php_version: ['8.1', '8.2']
+        prefer_lowest: ['yes', '']
+    container: dannecron/php-for-dev:${{ matrix.php_version }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Init composer.lock
+        run: |
+          composer update --no-install $(if [[ ${{ matrix.prefer_lowest }} == 'yes ]]; then echo '--prefer-lowest'; fi)
+      - name: Install dependencies
+        run: composer install
+      - name: Run tests
+        run: composer run pest-coverage
+#  lint:

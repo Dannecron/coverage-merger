@@ -37,5 +37,10 @@
         "allow-plugins": {
             "pestphp/pest-plugin": false
         }
+    },
+    "scripts": {
+        "pest": "vendor/bin/pest",
+        "pest-coverage": "env XDEBUG_MODE=coverage vendor/bin/pest --coverage-html=./tests/data/coverage-html --coverage-text",
+        "pest-coverage-html": "env XDEBUG_MODE=coverage vendor/bin/pest --coverage-html=./tests/data/coverage-html"
     }
 }
