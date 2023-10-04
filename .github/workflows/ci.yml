@@ -6,12 +6,6 @@ on:
   push:
     branches:
       - '**'
-    paths:
-      - 'src/*'
-      - 'tests/*'
-      - 'composer.json'
-      - 'phpunit.xml'
-      - 'phpcs.xml'
 
 jobs:
   tests:
