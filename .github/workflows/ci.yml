@@ -38,3 +38,14 @@ jobs:
         run: composer update
       - name: Run phpcs
         run: vendor/bin/phpcs --standard=phpcs.xml --report=full --config-set php_version ${{ matrix.php_version }} ./src ./tests
+
+  analyze:
+    runs-on: ubuntu-22.04
+    container: dannecron/php-for-dev:8.2
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Init composer.lock and install dependencies
+        run: composer update
+      - name: Run phpstan
+        run: vendor/bin/phpstan analyse src tests
