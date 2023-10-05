@@ -21,6 +21,7 @@ parameters:
             - '#Call to an undefined method Pest\\Expectation|Pest\\Support\\Extendable::#'
             - '#Call to an undefined method Pest\\Mixins\\Expectation#'
             - '#Call to an undefined method Pest\\PendingCalls\\TestCall|Pest\\Support\\HigherOrderTapProxy::#'
+            - '#Access to an undefined property Pest\\Mixins\\Expectation#'
           paths:
             - tests/*
         # Some mockery errors
