@@ -22,6 +22,9 @@ class LineDto
         return $this->count;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getProperties(): array
     {
         return $this->properties;

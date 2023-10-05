@@ -14,6 +14,9 @@ class ClassDto
     ) {
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getProperties(): array
     {
         return $this->properties;

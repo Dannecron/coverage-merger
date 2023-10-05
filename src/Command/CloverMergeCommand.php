@@ -56,6 +56,11 @@ final class CloverMergeCommand extends CliCommand
     }
 
     /**
+     * @param array<array-key, string> $files
+     * @param string $output
+     * @param string|null $workdir
+     * @param bool $stats
+     * @return int
      * @throws ExecuteException
      */
     public function execute(array $files, string $output, ?string $workdir, bool $stats): int

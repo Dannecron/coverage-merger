@@ -14,7 +14,7 @@ class Renderer
 {
     /**
      * @param Accumulator $accumulator
-     * @return array
+     * @return array{0: string, 1: Metrics}
      * @throws \DOMException
      */
     public function renderAccumulator(Accumulator $accumulator): array
@@ -71,7 +71,7 @@ class Renderer
 
         $xmlProject->appendChild($this->renderMetricsProject($xmlDocument, $projectMetrics));
 
-        return [$xmlDocument->saveXML(), $projectMetrics];
+        return [(string) $xmlDocument->saveXML(), $projectMetrics];
     }
 
     /**

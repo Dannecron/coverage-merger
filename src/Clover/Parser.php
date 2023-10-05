@@ -57,6 +57,10 @@ class Parser implements ElementsDictionary
         return new LineDto($properties, (int) $count);
     }
 
+    /**
+     * @param \SimpleXMLElement $xml
+     * @return array<array-key, \SimpleXMLElement>
+     */
     public function getAttributes(\SimpleXMLElement $xml): array
     {
         return ((array) $xml->attributes())['@attributes'] ?? [];

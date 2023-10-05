@@ -10,11 +10,11 @@ use Dannecron\CoverageMerger\Clover\Parser;
 \test('examples without files', function (string $exampleFilename): void {
     $handler = new Handler(new Parser());
 
-    $cloverContents = \file_get_contents(\getExamplePath($exampleFilename));
+    $cloverContents = (string) \file_get_contents(\getExamplePath($exampleFilename));
+    /** @var \SimpleXMLElement $xml */
+    $xml = \simplexml_load_string($cloverContents);
 
-    $accumulator = $handler->handleSingleDocument(
-        \simplexml_load_string($cloverContents),
-    );
+    $accumulator = $handler->handleSingleDocument($xml);
 
     $files = $accumulator->getFiles();
     \expect($files)->toHaveCount(0);
@@ -34,11 +34,11 @@ use Dannecron\CoverageMerger\Clover\Parser;
 ): void {
     $handler = new Handler(new Parser());
 
-    $cloverContents = \file_get_contents(\getExamplePath($exampleFilename));
+    $cloverContents = (string) \file_get_contents(\getExamplePath($exampleFilename));
+    /** @var \SimpleXMLElement $xml */
+    $xml = \simplexml_load_string($cloverContents);
 
-    $accumulator = $handler->handleSingleDocument(
-        \simplexml_load_string($cloverContents),
-    );
+    $accumulator = $handler->handleSingleDocument($xml);
 
     $files = $accumulator->getFiles();
     \expect($files)->toHaveCount(1)->toHaveKey($expectedFilename);
@@ -62,11 +62,11 @@ use Dannecron\CoverageMerger\Clover\Parser;
 ): void {
     $handler = new Handler(new Parser());
 
-    $cloverContents = \file_get_contents(\getExamplePath($exampleFilename));
+    $cloverContents = (string) \file_get_contents(\getExamplePath($exampleFilename));
+    /** @var \SimpleXMLElement $xml */
+    $xml = \simplexml_load_string($cloverContents);
 
-    $accumulator = $handler->handleSingleDocument(
-        \simplexml_load_string($cloverContents),
-    );
+    $accumulator = $handler->handleSingleDocument($xml);
 
     $files = $accumulator->getFiles();
     \expect($files)->toHaveCount(2)
@@ -81,12 +81,12 @@ use Dannecron\CoverageMerger\Clover\Parser;
 \test('examples with invalid structure', function (string $exampleFilename): void {
     $handler = new Handler(new Parser());
 
-    $cloverContents = \file_get_contents(\getExamplePath($exampleFilename));
+    $cloverContents = (string) \file_get_contents(\getExamplePath($exampleFilename));
+    /** @var \SimpleXMLElement $xml */
+    $xml = \simplexml_load_string($cloverContents);
 
     $this->expectException(HandleException::class);
-    $handler->handleSingleDocument(
-        \simplexml_load_string($cloverContents),
-    );
+    $handler->handleSingleDocument($xml);
 })
     ->with([
         'file-with-bad-line.xml',

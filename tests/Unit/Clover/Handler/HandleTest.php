@@ -9,18 +9,27 @@ use Dannecron\CoverageMerger\Clover\Handler;
 use Dannecron\CoverageMerger\Clover\Parser;
 
 \test('merge multiple valid files', function (): void {
-    $fileWithPackage = \file_get_contents(\getExamplePath('file-with-package.xml'));
-    $fileWithoutPackage = \file_get_contents(\getExamplePath('file-without-package.xml'));
-    $fileWithDifferences = \file_get_contents(\getExamplePath('file-with-differences.xml'));
-    $metricsAndClasses = \file_get_contents(\getExamplePath('metrics-and-classes.xml'));
+    $fileWithPackage = (string) \file_get_contents(\getExamplePath('file-with-package.xml'));
+    $fileWithoutPackage = (string) \file_get_contents(\getExamplePath('file-without-package.xml'));
+    $fileWithDifferences = (string) \file_get_contents(\getExamplePath('file-with-differences.xml'));
+    $metricsAndClasses = (string) \file_get_contents(\getExamplePath('metrics-and-classes.xml'));
 
     $handler = new Handler(new Parser());
 
+    /** @var \SimpleXMLElement $xmlFileWithPackage */
+    $xmlFileWithPackage = \simplexml_load_string($fileWithPackage);
+    /** @var \SimpleXMLElement $xmlFileWithoutPackage */
+    $xmlFileWithoutPackage = \simplexml_load_string($fileWithoutPackage);
+    /** @var \SimpleXMLElement $xmlFileWithDifferences */
+    $xmlFileWithDifferences = \simplexml_load_string($fileWithDifferences);
+    /** @var \SimpleXMLElement $xmlMetricsAndClasses */
+    $xmlMetricsAndClasses = \simplexml_load_string($metricsAndClasses);
+
     $accumulator = $handler->handle(
-        \simplexml_load_string($fileWithPackage),
-        \simplexml_load_string($fileWithoutPackage),
-        \simplexml_load_string($fileWithDifferences),
-        \simplexml_load_string($metricsAndClasses),
+        $xmlFileWithPackage,
+        $xmlFileWithoutPackage,
+        $xmlFileWithDifferences,
+        $xmlMetricsAndClasses,
     );
 
     $files = $accumulator->getFiles();
