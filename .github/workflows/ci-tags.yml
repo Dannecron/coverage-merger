@@ -18,7 +18,7 @@ jobs:
             --build-arg BUILDKIT_INLINE_CACHE=1 \
             --build-arg PHP_VERSION=${{ vars.DOCKER_RUNTIME_PHP_VERSION }} \
             --build-arg COMPOSER_VERSION=${{ vars.DOCKER_RUNTIME_COMPOSER_VERSION }} \
-            --target=runtime
+            --target=runtime \
             --tag=dannecron/coverage-merger:latest \
             --file=./.github/Dockerfile .
       - name: Login to docker hub
