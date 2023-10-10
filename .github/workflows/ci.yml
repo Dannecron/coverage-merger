@@ -63,11 +63,12 @@ jobs:
       - name: Build docker image
         run: |
           DOCKER_BUILDKIT=1 docker build \
-           --build-arg BUILDKIT_INLINE_CACHE=1 \
-           --build-arg PHP_VERSION=${{ vars.DOCKER_RUNTIME_PHP_VERSION }} \
-           --build-arg COMPOSER_VERSION=${{ vars.DOCKER_RUNTIME_COMPOSER_VERSION }} \
-           --tag=dannecron/coverage-merger:latest \
-           --file=./.github/Dockerfile .
+            --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --build-arg PHP_VERSION=${{ vars.DOCKER_RUNTIME_PHP_VERSION }} \
+            --build-arg COMPOSER_VERSION=${{ vars.DOCKER_RUNTIME_COMPOSER_VERSION }} \
+            --target=runtime \
+            --tag=dannecron/coverage-merger:latest \
+            --file=./.github/Dockerfile .
       - name: Login to docker hub
         uses: actions-hub/docker/login@master
         env:
@@ -91,11 +92,12 @@ jobs:
       - name: Build docker image
         run: |
           DOCKER_BUILDKIT=1 docker build \
-           --build-arg BUILDKIT_INLINE_CACHE=1 \
-           --build-arg PHP_VERSION=${{ vars.DOCKER_RUNTIME_PHP_VERSION }} \
-           --build-arg COMPOSER_VERSION=${{ vars.DOCKER_RUNTIME_COMPOSER_VERSION }} \
-           --tag=dannecron/coverage-merger:latest \
-           --file=./.github/Dockerfile .
+            --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --build-arg PHP_VERSION=${{ vars.DOCKER_RUNTIME_PHP_VERSION }} \
+            --build-arg COMPOSER_VERSION=${{ vars.DOCKER_RUNTIME_COMPOSER_VERSION }} \
+            --target=runtime
+            --tag=dannecron/coverage-merger:latest \
+            --file=./.github/Dockerfile .
       - name: Login to docker hub
         uses: actions-hub/docker/login@master
         env:
