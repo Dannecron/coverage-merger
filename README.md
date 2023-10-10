@@ -8,6 +8,9 @@ Supported formats:
 
 ### Install
 
+Available as composer-package on [packagist](https://packagist.org/packages/dannecron/coverage-merger) 
+and as docker-image on [docker-hub](https://hub.docker.com/r/dannecron/coverage-merger).
+
 #### As global composer dependency
 
 ```shell
@@ -21,8 +24,6 @@ composer require --dev dannecron/coverage-merger
 ```
 
 #### As docker-container
-
-Images published on [hub.docker.com](https://hub.docker.com/r/dannecron/coverage-merger)
 
 ```shell
 docker pull dannecron/coverage-merger:latest
