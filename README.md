@@ -20,6 +20,14 @@ composer global require dannecron/coverage-merger
 composer require --dev dannecron/coverage-merger
 ```
 
+#### As docker-container
+
+Images published on [hub.docker.com](https://hub.docker.com/r/dannecron/coverage-merger)
+
+```shell
+docker pull dannecron/coverage-merger:latest
+```
+
 ### Usage
 
 It's cli-app with single access point:
@@ -29,6 +37,8 @@ It's cli-app with single access point:
 $COMPOSER_HOME/vendor/bin/merger
 # if installed locally
 ./vendor/bin/merger
+# if pulled from docker hub
+docker run --rm dannecron/coverage-merger:latest
 ```
 
 ```text
