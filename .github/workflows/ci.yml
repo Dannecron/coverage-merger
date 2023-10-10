@@ -64,8 +64,8 @@ jobs:
         run: |
           DOCKER_BUILDKIT=1 docker build \
            --build-arg BUILDKIT_INLINE_CACHE=1 \
-           --build-arg PHP_VERSION=${{ env.DOCKER_RUNTIME_PHP_VERSION }} \
-           --build-arg COMPOSER_VERSION=${{ env.DOCKER_RUNTIME_COMPOSER_VERSION }} \
+           --build-arg PHP_VERSION=${{ vars.DOCKER_RUNTIME_PHP_VERSION }} \
+           --build-arg COMPOSER_VERSION=${{ vars.DOCKER_RUNTIME_COMPOSER_VERSION }} \
            --tag=dannecron/coverage-merger:latest \
            --file=./.github/Dockerfile .
       - name: Login to docker hub
@@ -92,8 +92,8 @@ jobs:
         run: |
           DOCKER_BUILDKIT=1 docker build \
            --build-arg BUILDKIT_INLINE_CACHE=1 \
-           --build-arg PHP_VERSION=${{ env.DOCKER_RUNTIME_PHP_VERSION }} \
-           --build-arg COMPOSER_VERSION=${{ env.DOCKER_RUNTIME_COMPOSER_VERSION }} \
+           --build-arg PHP_VERSION=${{ vars.DOCKER_RUNTIME_PHP_VERSION }} \
+           --build-arg COMPOSER_VERSION=${{ vars.DOCKER_RUNTIME_COMPOSER_VERSION }} \
            --tag=dannecron/coverage-merger:latest \
            --file=./.github/Dockerfile .
       - name: Login to docker hub
