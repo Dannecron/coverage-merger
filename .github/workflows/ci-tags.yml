@@ -19,7 +19,7 @@ jobs:
             --build-arg PHP_VERSION=${{ vars.DOCKER_RUNTIME_PHP_VERSION }} \
             --build-arg COMPOSER_VERSION=${{ vars.DOCKER_RUNTIME_COMPOSER_VERSION }} \
             --target=runtime \
-            --tag=dannecron/coverage-merger:latest \
+            --tag=dannecron/coverage-merger:${{ github.ref_name }} \
             --file=./.github/Dockerfile .
       - name: Login to docker hub
         uses: actions-hub/docker/login@master
