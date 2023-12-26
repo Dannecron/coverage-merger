@@ -1,5 +1,6 @@
-ARG PHP_VERSION=8.2.11
-ARG COMPOSER_VERSION=2.6.5
+ARG PHP_VERSION=8.2.13
+ARG COMPOSER_VERSION=2.6.6
+ARG MERGER_VERSION=dev-master
 
 FROM composer:${COMPOSER_VERSION} as composer
 
@@ -14,5 +15,7 @@ RUN composer update --no-dev
 
 COPY merger merger
 COPY src src
+
+ENV MERGER_VERSION=${MERGER_VERSION}
 
 ENTRYPOINT ["/app/merger"]

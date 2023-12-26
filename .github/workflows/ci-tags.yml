@@ -18,6 +18,7 @@ jobs:
             --build-arg BUILDKIT_INLINE_CACHE=1 \
             --build-arg PHP_VERSION=${{ vars.DOCKER_RUNTIME_PHP_VERSION }} \
             --build-arg COMPOSER_VERSION=${{ vars.DOCKER_RUNTIME_COMPOSER_VERSION }} \
+            --build-arg MERGER_VERSION=${{ github.ref_name }} \
             --target=runtime \
             --tag=dannecron/coverage-merger:${{ github.ref_name }} \
             --file=./.github/Dockerfile .
